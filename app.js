@@ -1,19 +1,21 @@
 const greeting = require('./greeting');     // import module greeting.js; //todo greeting - {exports from greeting module}
 
-greeting.sayHi(greeting.name)
+const osModule = require('./os-module')
 
-console.log(greeting)
-
-// console.log(process)
-// console.log(__dirname)
+// greeting.sayHi(greeting.name)
 //
-// console.log(module)
-
-
-
-// Module
-
-//todo module = this file
-
-// module.exports = sayHi  -  one thing export
+// console.log(greeting)
+//
+// // console.log(process)
+// // console.log(__dirname)
+// //
+// // console.log(module)
+//
+//
+//
+// // Module
+//
+// //todo module = this file
+//
+// // module.exports = sayHi  -  one thing export
 
