@@ -1,0 +1,14 @@
+const EventEmitter = require('events');
+
+
+const customEmitter = new EventEmitter();
+
+customEmitter.on('response', ()=>{
+    console.log('Hello from response!!!');
+})
+
+
+console.log(customEmitter.emit('response'));
+
+
+

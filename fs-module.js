@@ -1,7 +1,9 @@
 const {readFileSync, writeFileSync} = require('fs');
+// const {readFileSync, writeFileSync} = require('fs').promises;        // promisyfies functions
 const util = require("util");
 const {readFile, writeFile} = require('fs')
 const path = require('path');
+const __ = require("lodash/fp/__");
 
 // SYNC
 // const data = readFileSync(path.resolve('contents', 'text.txt'), 'utf8');
@@ -32,10 +34,48 @@ const readDataFromFile = async () => {
 // });
 
 
-readDataFromFile();
+// readDataFromFile();
+
+const getData = (path) => {
+  return new Promise((resolve, reject)=>{
+      readFile(path, 'utf8', (err, data)=>{
+          if (err){
+              reject(err);
+          }else {
+              resolve(data);
+          }
+      })
+  })
+}
+
+const writeData = (path, data) => {
+    return new Promise((resolve, reject)=>{
+        writeFile(path, data, (err)=>{
+            if (err){
+                reject(err);
+            }
+            resolve()
+        })
+    })
+}
+
+const start = async ()=>{
+    const data = await getData(path.join(__dirname, '/contents/res.txt'));
+    for (let i = 0; i < 1000; i++) {
+            console.log(i)
+    }
+    await writeData(path.join(__dirname, '/contents/res.txt'),data)
+    console.log('OK!!!');
+}
 
 
+start()
 
+// getData(path.join(__dirname, '/contents/res.txt'))
+//     .then((data)=> writeData(path.join(__dirname, '/contents/text.txt'), data)
+//         .then(()=> console.log('Everything is OK!!!'))
+//         .catch((err)=> console.log(err)))
+//     .catch((err)=> console.log(err));
 
 
 
